@@ -4,6 +4,8 @@
 
 저는 단순히 만들어진 라이브러리를 사용하는 것을 넘어, **"모델 내부의 핵심 로직과 수학적 원리를 이해해야만 실무의 엣지 케이스(Edge Case)를 해결할 수 있다"** 고 믿습니다. 밑바닥부터 직접 코딩하며 다진 '기초 체력'을 바탕으로, 실제 도로 위 위험 요소를 탐지하는 고도화된 SOTA 모델 최적화까지 아우르는 파이프라인을 구축하고 있습니다.
 
+---
+
 ### 🛠️ Tech Stack & Skills
 - **LLM & NLP:** `LangChain`, `Gemini 2.0 Flash API`, `Hugging Face Transformers`, `BERT`
 - **Computer Vision:** `PyTorch`, `Torchvision`, `YOLOv5`, `GANs`
