@@ -1,6 +1,6 @@
 # 안녕하세요, '원리를 파고들어 실전에 적용하는' AI 엔지니어 AD입니다. 👋
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FAD-Styles&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+![Profile Views](https://komarev.com/ghpvc/?username=AD-Styles&color=blue)
 
 저는 단순히 만들어진 라이브러리를 사용하는 것을 넘어, **"모델 내부의 핵심 로직과 수학적 원리를 이해해야만 실무의 엣지 케이스(Edge Case)를 해결할 수 있다"**고 믿습니다. 밑바닥부터 직접 코딩하며 다진 '기초 체력'을 바탕으로, 실제 도로 위 위험 요소를 탐지하는 고도화된 SOTA 모델 최적화까지 아우르는 파이프라인을 구축하고 있습니다.
 
