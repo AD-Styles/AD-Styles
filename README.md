@@ -22,6 +22,9 @@
 * **[`nlp-triton-deployment (LLM Serving)`](https://github.com/AD-Styles/nlp-triton-deployment)**: 대규모 언어 모델의 실무 서빙을 위해 **NVIDIA Triton Inference Server**를 도입했습니다.
   - **Dynamic Axis:** 모델 설정 파일(`config.pbtxt`)에서 `dims: [-1]`을 명시하여 다양한 길이의 시퀀스 입력을 유연하게 처리하는 동적 축 지원 환경 구축.
   - **Optimization:** Dynamic Batching 기능 활성화 및 TensorRT 엔진 변환을 통해 모델의 추론 지연 시간(Latency) 최소화 및 처리량(Throughput) 극대화.
+* **[`kogpt2-korean-finetuning`](https://github.com/AD-Styles/kogpt2-korean-finetuning)** & **[`unsloth-qlora-finetuning`](https://github.com/AD-Styles/unsloth-qlora-finetuning)**: 한국어 특화 LLM 파인튜닝 경험을 보유하고 있습니다.
+  - **KoGPT2:** 한국어 도메인 데이터를 활용한 언어 모델 파인튜닝 및 성능 평가.
+  - **QLoRA (Unsloth):** 저메모리 환경에서 대형 모델을 효율적으로 파인튜닝하는 양자화 기반 학습 기법 적용.
 
 **2️⃣ Computer Vision: 기초 원리부터 실전 데이터 처리까지**
 * **[`object-detection-fundamentals`](https://github.com/AD-Styles/object-detection-fundamentals)**: 블랙박스 라이브러리 없이 IoU, NMS 및 멀티태스크 신경망의 핵심 로직을 픽셀 좌표계 단위부터 직접 구현하며 모델의 기하학적 동작 원리를 체득했습니다.
