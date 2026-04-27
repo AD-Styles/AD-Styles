@@ -34,7 +34,11 @@
 * **[`multimodal-ai-sensor-fusion`](https://github.com/AD-Styles/multimodal-ai-sensor-fusion)**: 이미지·센서 등 이기종(異機種) 데이터를 통합하는 멀티모달 AI 파이프라인을 설계하여, 단일 모달리티 대비 향상된 인식 성능을 달성했습니다.
 
 **3️⃣ Reinforcement Learning: 자율 에이전트 설계**
-* **[`carracing-rl`](https://github.com/AD-Styles/carracing-rl)**: `CarRacing-v2` 시뮬레이션 환경에서 CNN 기반의 특징 추출, Frame Stacking, Experience Replay 기법을 결합하여 스스로 최적의 주행 경로를 학습하는 강화학습 에이전트를 개발했습니다.
+* **[`car-racing-dqn`](https://github.com/AD-Styles/car-racing-dqn)**: `CarRacing-v2` 시뮬레이션 환경에서 CNN 기반의 특징 추출, Frame Stacking, Experience Replay 기법을 결합하여 스스로 최적의 주행 경로를 학습하는 강화학습 에이전트를 개발했습니다.
+
+**4️⃣ Data Engineering & Domain Application**
+* **[`skhynix-stock-analysis`](https://github.com/AD-Styles/skhynix-stock-analysis)**: 반도체 도메인 지식을 결합한 SK하이닉스 주가 데이터 분석 프로젝트로, 실무 데이터 분석 역량 및 도메인 응용 능력을 어필합니다.
+* **[`rapids-dask-pipeline`](https://github.com/AD-Styles/rapids-dask-pipeline)**: 대규모 데이터 전처리 병목 해소를 위해 `NVIDIA RAPIDS (cuDF)` 와 `Dask` 분산 처리를 결합한 GPU 기반 데이터 파이프라인을 구축했습니다.
 
 ---
 
