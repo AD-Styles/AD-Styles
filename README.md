@@ -22,22 +22,21 @@
 * **[`nlp-triton-deployment (LLM Serving)`](https://github.com/AD-Styles/nlp-triton-deployment)**: 대규모 언어 모델의 실무 서빙을 위해 **NVIDIA Triton Inference Server**를 도입했습니다.
   - **Dynamic Axis:** 모델 설정 파일(`config.pbtxt`)에서 `dims: [-1]`을 명시하여 다양한 길이의 시퀀스 입력을 유연하게 처리하는 동적 축 지원 환경 구축.
   - **Optimization:** Dynamic Batching 기능 활성화 및 TensorRT 엔진 변환을 통해 모델의 추론 지연 시간(Latency) 최소화 및 처리량(Throughput) 극대화.
-* **[`kogpt2-korean-finetuning`](https://github.com/AD-Styles/kogpt2-korean-finetuning)** & **[`unsloth-qlora-finetuning`](https://github.com/AD-Styles/unsloth-qlora-finetuning)**: 한국어 특화 LLM 파인튜닝 경험을 보유하고 있습니다.
+* **[`kogpt2-korean-finetuning`](https://github.com/AD-Styles/kogpt2-korean-finetuning)** & **[`unsloth-qlora-finetuning`](https://github.com/AD-Styles/unsloth-qlora-finetuning)**: 한국어 특화 LLM 파인튜닝 경험을 쌓았습니다.
   - **KoGPT2:** 한국어 도메인 데이터를 활용한 언어 모델 파인튜닝 및 성능 평가.
   - **QLoRA (Unsloth):** 저메모리 환경에서 대형 모델을 효율적으로 파인튜닝하는 양자화 기반 학습 기법 적용.
 
-
 **2️⃣ Computer Vision: 기초 원리부터 실전 데이터 처리까지**
-* **[`object-detection-fundamentals`](https://github.com/AD-Styles/object-detection-fundamentals)**: 블랙박스 라이브러리 없이 IoU, NMS 및 멀티태스크 신경망의 핵심 로직을 픽셀 좌표계 단위부터 직접 구현하며 모델의 기하학적 동작 원리를 체득했습니다.
+* **[`object-detection-fundamentals`](https://github.com/AD-Styles/object-detection-fundamentals)**: 블랙박스 라이브러리 없이 IoU, NMS 및 멀티태스크 신경망의 핵심 로직을 픽셀 좌표계 단위부터 직접 구현하며 모델이 내부에서 어떻게 동작하는지 손으로 익혔습니다.
 * **[`yolov5-pothole-detector`](https://github.com/AD-Styles/yolov5-pothole-detector)**: YOLOv5를 활용하여 실시간 도로 영상에서 포트홀을 탐지하는 파이프라인을 구축했습니다. 단일 클래스(`nc=1`) 커스텀 학습으로 mAP50 0.85 이상의 탐지 성능을 확보했습니다.
-* **[`image-segmentation-from-scratch`](https://github.com/AD-Styles/image-segmentation-from-scratch)**: 라이브러리 의존 없이 이미지 세그멘테이션 핵심 알고리즘을 직접 구현하며 픽셀 단위 분류 원리를 체득했습니다.
-* **[`multimodal-ai-sensor-fusion`](https://github.com/AD-Styles/multimodal-ai-sensor-fusion)**: 이미지·센서 등의 데이터를 통합하는 멀티모달 AI 파이프라인을 설계하여, 단일 모달리티 대비 향상된 인식 성능을 달성했습니다.
+* **[`image-segmentation-from-scratch`](https://github.com/AD-Styles/image-segmentation-from-scratch)**: 라이브러리 의존 없이 이미지 세그멘테이션 핵심 알고리즘을 직접 구현하며 픽셀 단위 분류가 어떻게 이루어지는지 직접 손으로 익혔습니다.
+* **[`multimodal-ai-sensor-fusion`](https://github.com/AD-Styles/multimodal-ai-sensor-fusion)**: 이미지·센서처럼 형태가 서로 다른 데이터를 하나로 합치는 멀티모달 AI 파이프라인을 설계하여, 단일 데이터 유형만 사용할 때보다 향상된 인식 성능을 달성했습니다.
 
 **3️⃣ Reinforcement Learning: 자율 에이전트 설계**
 * **[`car-racing-dqn`](https://github.com/AD-Styles/car-racing-dqn)**: `CarRacing-v2` 시뮬레이션 환경에서 CNN 기반의 특징 추출, Frame Stacking, Experience Replay 기법을 결합하여 스스로 최적의 주행 경로를 학습하는 강화학습 에이전트를 개발했습니다.
 
 **4️⃣ Data Engineering & Domain Application**
-* **[`skhynix-stock-analysis`](https://github.com/AD-Styles/skhynix-stock-analysis)**: 반도체 도메인 지식을 결합한 SK하이닉스 주가 데이터 분석 프로젝트로, 실무 데이터 분석 역량 및 도메인 응용 능력을 어필합니다.
+* **[`skhynix-stock-analysis`](https://github.com/AD-Styles/skhynix-stock-analysis)**: 반도체 도메인 지식을 결합한 SK하이닉스 주가 데이터 분석 프로젝트로, 실제 산업 데이터에 분석 역량을 적용한 사례입니다.
 * **[`rapids-dask-pipeline`](https://github.com/AD-Styles/rapids-dask-pipeline)**: 대규모 데이터 전처리 병목 해소를 위해 `NVIDIA RAPIDS (cuDF)` 와 `Dask` 분산 처리를 결합한 GPU 기반 데이터 파이프라인을 구축했습니다.
 
 ---
