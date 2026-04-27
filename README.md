@@ -26,9 +26,12 @@
   - **KoGPT2:** 한국어 도메인 데이터를 활용한 언어 모델 파인튜닝 및 성능 평가.
   - **QLoRA (Unsloth):** 저메모리 환경에서 대형 모델을 효율적으로 파인튜닝하는 양자화 기반 학습 기법 적용.
 
+
 **2️⃣ Computer Vision: 기초 원리부터 실전 데이터 처리까지**
 * **[`object-detection-fundamentals`](https://github.com/AD-Styles/object-detection-fundamentals)**: 블랙박스 라이브러리 없이 IoU, NMS 및 멀티태스크 신경망의 핵심 로직을 픽셀 좌표계 단위부터 직접 구현하며 모델의 기하학적 동작 원리를 체득했습니다.
 * **[`yolov5-pothole-detector`](https://github.com/AD-Styles/yolov5-pothole-detector)**: YOLOv5를 활용하여 실시간 도로 영상에서 포트홀을 탐지하는 파이프라인을 구축했습니다. 단일 클래스(`nc=1`) 커스텀 학습으로 mAP50 0.85 이상의 탐지 성능을 확보했습니다.
+* **[`image-segmentation-from-scratch`](https://github.com/AD-Styles/image-segmentation-from-scratch)**: 라이브러리 의존 없이 이미지 세그멘테이션 핵심 알고리즘을 직접 구현하며 픽셀 단위 분류 원리를 체득했습니다.
+* **[`multimodal-ai-sensor-fusion`](https://github.com/AD-Styles/multimodal-ai-sensor-fusion)**: 이미지·센서 등 이기종(異機種) 데이터를 통합하는 멀티모달 AI 파이프라인을 설계하여, 단일 모달리티 대비 향상된 인식 성능을 달성했습니다.
 
 **3️⃣ Reinforcement Learning: 자율 에이전트 설계**
 * **[`carracing-rl`](https://github.com/AD-Styles/carracing-rl)**: `CarRacing-v2` 시뮬레이션 환경에서 CNN 기반의 특징 추출, Frame Stacking, Experience Replay 기법을 결합하여 스스로 최적의 주행 경로를 학습하는 강화학습 에이전트를 개발했습니다.
