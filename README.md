@@ -2,54 +2,103 @@
 
 ![Profile Views](https://komarev.com/ghpvc/?username=AD-Styles&color=blue)
 
-저는 단순히 만들어진 라이브러리를 사용하는 것을 넘어, **"모델 내부의 핵심 로직과 수학적 원리를 이해해야만 실무의 엣지 케이스(Edge Case)를 해결할 수 있다"** 고 믿습니다. 밑바닥부터 직접 코딩하며 다진 '기초 체력'을 바탕으로, 실제 도로 위 위험 요소를 탐지하는 고도화된 SOTA 모델 최적화까지 아우르는 파이프라인을 구축하고 있습니다.
+저는 단순히 만들어진 라이브러리를 사용하는 것을 넘어, **"모델 내부의 핵심 로직과 수학적 원리를 이해해야만 실무의 엣지 케이스(Edge Case)를 해결할 수 있다"** 고 믿습니다. 논문을 직접 구현하며 다진 '기초 체력' 위에, **밑바닥(From Scratch) → 전이학습/파인튜닝 → SOTA 모델 최적화 및 서빙(Triton/TensorRT)** 까지 이어지는 엔드투엔드 AI 파이프라인을 설계하고 있습니다.
 
 ---
 
 ### 🛠️ Tech Stack & Skills
-- **LLM & NLP:** `LangChain`, `Gemini 2.0 Flash API`, `Hugging Face Transformers`, `BERT`
-- **Computer Vision:** `PyTorch`, `Torchvision`, `YOLOv5`, `GANs`
-- **Data Engineering & Acceleration:** `NVIDIA RAPIDS (cuDF)`, `Dask`, `CUDA (Numba)`
-- **MLOps & Deployment:** `NVIDIA Triton Inference Server`, `TensorRT`, `Hugging Face Spaces`
+
+- **Foundations (논문 직접 구현):** `PyTorch`, `NumPy` only — Transformer, ResNet, GPT, VAE, GAN, Diffusion, CLIP
+- **LLM & NLP:** `LangChain`, `LangGraph`, `Gemini 2.0 Flash`, `OpenAI API`, `Hugging Face Transformers`, `KoGPT2`, `KLUE-BERT`, `Sentence-Transformers`
+- **LLM Fine-Tuning & Optimization:** `Unsloth`, `QLoRA (4-bit NF4)`, `PEFT`, `Pydantic-Structured Output`
+- **Computer Vision:** `PyTorch`, `Torchvision`, `YOLOv5`, `U-Net`, `FCN`, `SMP (segmentation_models_pytorch)`, `ResNet`, `GANs`, `OpenCV`
+- **RAG & Vector DB:** `ChromaDB`, `FAISS`, `RecursiveCharacterTextSplitter`, `LCEL`, `Multi-Collection Routing`
+- **Reinforcement Learning:** `Q-Learning`, `DQN`, `Experience Replay`, `Frame Stacking`, `Gymnasium`
+- **Data Engineering & Acceleration:** `NVIDIA RAPIDS (cuDF / cuGraph)`, `Dask`, `CUDA (Numba)`, `Parquet`, `NetworkX`
+- **MLOps & Deployment:** `NVIDIA Triton Inference Server`, `TensorRT`, `ONNX`, `Dynamic Batching`, `Hugging Face Spaces`, `Gradio`, `Streamlit`
 
 ---
 
-**1️⃣ Natural Language Processing & LLM: 지능형 시스템 설계 및 최적화**
-* **[`nlp-portfolio (Conversational RAG Chatbot)`](https://github.com/AD-Styles/nlp-portfolio)**: **LangChain**과 **Gemini 2.0 Flash**를 활용하여 복잡한 PDF 문서를 이해하고 답변하는 RAG 시스템을 구축했습니다.
-  - **Data Pipeline:** PyPDFLoader를 활용한 문서 추출 및 Recursive Character Text Splitter 기반의 청크(Chunk) 최적화.
-  - **Vector Storage:** 생성된 임베딩 벡터를 ChromaDB(또는 FAISS)에 저장하여 시맨틱 검색(Semantic Search) 효율 극대화.
-  - **Deployment:** Hugging Face Spaces를 통한 모델 배포 및 Streamlit 기반 웹 인터페이스 구현.
-* **[`nlp-triton-deployment (LLM Serving)`](https://github.com/AD-Styles/nlp-triton-deployment)**: 대규모 언어 모델의 실무 서빙을 위해 **NVIDIA Triton Inference Server**를 도입했습니다.
-  - **Dynamic Axis:** 모델 설정 파일(`config.pbtxt`)에서 `dims: [-1]`을 명시하여 다양한 길이의 시퀀스 입력을 유연하게 처리하는 동적 축 지원 환경 구축.
-  - **Optimization:** Dynamic Batching 기능 활성화 및 TensorRT 엔진 변환을 통해 모델의 추론 지연 시간(Latency) 최소화 및 처리량(Throughput) 극대화.
-* **[`kogpt2-korean-finetuning`](https://github.com/AD-Styles/kogpt2-korean-finetuning)** & **[`unsloth-qlora-finetuning`](https://github.com/AD-Styles/unsloth-qlora-finetuning)**: 한국어 특화 LLM 파인튜닝 경험을 쌓았습니다.
-  - **KoGPT2:** 한국어 도메인 데이터를 활용한 언어 모델 파인튜닝 및 성능 평가.
-  - **QLoRA (Unsloth):** 저메모리 환경에서 대형 모델을 효율적으로 파인튜닝하는 양자화 기반 학습 기법 적용.
+## 🚀 대표 프로젝트 (Representative Projects)
 
-**2️⃣ Computer Vision: 기초 원리부터 실전 데이터 처리까지**
-* **[`object-detection-fundamentals`](https://github.com/AD-Styles/object-detection-fundamentals)**: 블랙박스 라이브러리 없이 IoU, NMS 및 멀티태스크 신경망의 핵심 로직을 픽셀 좌표계 단위부터 직접 구현하며 모델이 내부에서 어떻게 동작하는지 손으로 익혔습니다.
-* **[`yolov5-pothole-detector`](https://github.com/AD-Styles/yolov5-pothole-detector)**: YOLOv5를 활용하여 실시간 도로 영상에서 포트홀을 탐지하는 파이프라인을 구축했습니다. 단일 클래스(`nc=1`) 커스텀 학습으로 mAP50 0.85 이상의 탐지 성능을 확보했습니다.
-* **[`image-segmentation-from-scratch`](https://github.com/AD-Styles/image-segmentation-from-scratch)**: 라이브러리 의존 없이 이미지 세그멘테이션 핵심 알고리즘을 직접 구현하며 픽셀 단위 분류가 어떻게 이루어지는지 직접 손으로 익혔습니다.
-* **[`multimodal-ai-sensor-fusion`](https://github.com/AD-Styles/multimodal-ai-sensor-fusion)**: 이미지·센서처럼 형태가 서로 다른 데이터를 하나로 합치는 멀티모달 AI 파이프라인을 설계하여, 단일 데이터 유형만 사용할 때보다 향상된 인식 성능을 달성했습니다.
+### 1️⃣ Foundations — 논문 / 핵심 알고리즘 From Scratch
 
-**3️⃣ Reinforcement Learning: 자율 에이전트 설계**
-* **[`car-racing-dqn`](https://github.com/AD-Styles/car-racing-dqn)**: `CarRacing-v2` 시뮬레이션 환경에서 CNN 기반의 특징 추출, Frame Stacking, Experience Replay 기법을 결합하여 스스로 최적의 주행 경로를 학습하는 강화학습 에이전트를 개발했습니다.
+> **"라이브러리 한 줄로 끝나는 코드는 누구나 작성할 수 있다."** — 그래서 저는 모델의 핵심 메커니즘을 PyTorch / NumPy 만으로 직접 구현하며 "왜 이 구조인가"를 설명할 수 있는 깊이를 쌓았습니다.
 
-**4️⃣ Data Engineering & Domain Application**
-* **[`skhynix-stock-analysis`](https://github.com/AD-Styles/skhynix-stock-analysis)**: 반도체 도메인 지식을 결합한 SK하이닉스 주가 데이터 분석 프로젝트로, 실제 산업 데이터에 분석 역량을 적용한 사례입니다.
-* **[`rapids-dask-pipeline`](https://github.com/AD-Styles/rapids-dask-pipeline)**: 대규모 데이터 전처리 병목 해소를 위해 `NVIDIA RAPIDS (cuDF)` 와 `Dask` 분산 처리를 결합한 GPU 기반 데이터 파이프라인을 구축했습니다.
+* **[`transformer-from-scratch`](https://github.com/AD-Styles/transformer-from-scratch)** — 『Attention Is All You Need』 논문 재현. `nn.Transformer` / HuggingFace 미사용, **Scaled Dot-Product Attention · Multi-Head · Sinusoidal Positional Encoding · Encoder-Decoder** 를 텐서 연산만으로 구현. 토이 태스크에서 **Val Acc 98.4%**, Attention Heatmap의 anti-diagonal 패턴으로 학습 원리 검증.
+* **[`gpt-from-scratch`](https://github.com/AD-Styles/gpt-from-scratch)** — nanoGPT 영감의 **Decoder-only Transformer (10.79M params)**. Q/K/V 분할까지 손작성, 자체 Char-level Tokenizer (vocab 65), Tiny Shakespeare 학습 후 **Greedy / Temperature / Top-k 샘플링 비교**.
+* **[`resnet-from-scratch`](https://github.com/AD-Styles/resnet-from-scratch)** — Skip Connection이 **Degradation Problem을 정말 해결하는가?** 를 검증. 동일 깊이·파라미터의 Plain-20 vs ResNet-20 비교 실험에서 `out + shortcut(x)` 단 한 줄의 효과를 **+2.19%p (89.16% vs 86.97%)** 로 정량화.
+* **[`diffusion-models-from-scratch`](https://github.com/AD-Styles/diffusion-models-from-scratch)** — **U-Net + Sinusoidal Time Embedding + Classifier-Free Guidance** 를 한 파일에. Forward/Reverse 확산 과정과 Bernoulli Context Mask까지 직접 구현.
+* **[`vae-from-scratch`](https://github.com/AD-Styles/vae-from-scratch)** — **Reparameterization Trick · ELBO (Reconstruction + β·KL)** 직접 구현. 16차원 Latent Space에서 Latent Traversal과 Interpolation으로 **차원별 의미 분석**.
+* **[`gan-from-scratch`](https://github.com/AD-Styles/gan-from-scratch)** — **DCGAN (ConvTranspose Generator + Conv Discriminator)** 으로 Minimax 게임 직접 작성. Mode Collapse 검증, D Accuracy 0.5 균형 모니터링, **VAE vs GAN (Blurry vs Sharp)** 동일 조건 비교.
+* **[`clip-from-scratch`](https://github.com/AD-Styles/clip-from-scratch)** — 이전 From-Scratch 부품(ResNet-20 + Transformer)을 **직접 조립한 Multi-Modal 시스템**. Symmetric InfoNCE Loss + Learnable Temperature τ로 학습, **학습 양식 64.4% vs Zero-shot 64.6%** — 임베딩 공간 정렬(Alignment) 성공.
+* **[`object-detection-fundamentals`](https://github.com/AD-Styles/object-detection-fundamentals)** — **IoU · NMS · 멀티태스크(좌표 회귀 + 분류) Loss 밸런싱** 을 NumPy로 직접 구현. ResNet18 Backbone 위에 픽셀 좌표계부터 손으로.
+* **[`image-segmentation-from-scratch`](https://github.com/AD-Styles/image-segmentation-from-scratch)** — **3단계 심화 학습 (FCN8s 논문 재현 → U-Net 직접 설계 → SMP 실무)**. 단순 코드 재현이 아닌 "왜 이 구조인가"를 설명할 수 있는 깊이.
+
+---
+
+### 2️⃣ NLP & LLM — 지능형 시스템 설계 / 파인튜닝 / 서빙
+
+#### LLM 응용 & RAG 시스템
+* **[`langchain-rag-enterprise-chatbot`](https://github.com/AD-Styles/langchain-rag-enterprise-chatbot)** — **5종 사내 문서(TXT/JSON/JSONL/CSV/PDF)** 를 멀티 컬렉션 ChromaDB로 분리 저장하여 자연어 라우팅 기반 RAG 챗봇 구축. **JSON은 통째로 보존, 텍스트는 청크 분할** 등 형식별 전략 차별화.
+* **[`langchain-production-chatbot`](https://github.com/AD-Styles/langchain-production-chatbot)** — **LangGraph + Pydantic Structured Output** 으로 분류·메모리·라우팅을 한 호출에. **InMemorySaver thread 격리 + SummarizationMiddleware (4000 토큰 임계치)** 로 토큰 폭주 방지.
+* **[`langchain-agent-tool-integration`](https://github.com/AD-Styles/langchain-agent-tool-integration)** — LLM이 외부 시스템(시간 조회 / 웹 스크래핑 / SQL)에 직접 접근하는 **3종 Tool 통합 Agent**. 시스템 프롬프트로 **읽기 전용 SQL 강제** 등 안전 설계.
+* **[`rag-chatbot`](https://github.com/AD-Styles/rag-chatbot)** — LangChain + Chroma + **Gemini 2.0 Flash** 로 대화 메모리 유지 RAG 챗봇 구축, Gradio UI로 Hugging Face Spaces 배포까지 엔드투엔드 완성.
+* **[`nlp-portfolio`](https://github.com/AD-Styles/nlp-portfolio)** — **수학적 기초(NumPy Self-Attention) → 분류(BERT/Logistic Regression) → 의미 검색(Multilingual-MiniLM)** 3단계 일관 파이프라인. Error Analysis 중심의 Data-Centric 접근.
+
+#### LLM 파인튜닝 & 효율화
+* **[`unsloth-qlora-finetuning`](https://github.com/AD-Styles/unsloth-qlora-finetuning)** — **Llama-3 8B를 T4 16GB 한 장으로** 파인튜닝. 4-bit NF4 양자화 + LoRA로 **전체 파라미터의 0.08% 미만만 학습**, **VRAM 60% 절감 / 훈련 속도 2.6배** 가속.
+* **[`kogpt2-korean-finetuning`](https://github.com/AD-Styles/kogpt2-korean-finetuning)** — KoGPT2를 NSMC 영화 리뷰 도메인으로 파인튜닝. **PreTrainedTokenizerFast 인덱스 밀림 문제를 근본 디버깅**, Top-P · Temperature · Repetition Penalty 디코딩 전략 비교.
+* **[`nlp-bert-finetuning`](https://github.com/AD-Styles/nlp-bert-finetuning)** — Self-Attention → BERT → 전이 학습([CLS] Token Pooling)까지 단계별 학습.
+
+#### LLM Serving (Production)
+* **[`nlp-triton-deployment`](https://github.com/AD-Styles/nlp-triton-deployment)** — BERT를 **PyTorch → ONNX → NVIDIA Triton Inference Server** 로 배포. `config.pbtxt`의 `dims:[-1]` 동적 축 지원 + **Dynamic Batching + 동적 패딩** 으로 **지연 시간 45ms → 12.5ms (▼72%) / 처리량 22 → 145 TPS (▲6.6배)** 달성.
+
+#### NLP 기초 다지기
+* **[`nlp-foundations`](https://github.com/AD-Styles/nlp-foundations)** — Attention 메커니즘을 NumPy로 직접 구현 + KLUE-BERT 파인튜닝 (NSMC **정확도 50% → 89%**) + Masked LM의 사회적 편향성 분석.
+* **[`nlp-preprocessing-foundation`](https://github.com/AD-Styles/nlp-preprocessing-foundation)** — 텍스트 정제·정규화·토큰화·TF-IDF·RNN/LSTM 까지 OOP 모듈화.
+* **[`nlp-text-classification`](https://github.com/AD-Styles/nlp-text-classification)** — 영화 리뷰(이진) + 국민청원(17개 다중 분류) 파이프라인. 데이터 불균형·반어법 한계 분석.
+* **[`nlp-semantic-search`](https://github.com/AD-Styles/nlp-semantic-search)** — Sentence-Transformers + Cosine Similarity 의미 검색 시스템.
+
+---
+
+### 3️⃣ Computer Vision — 기초 원리부터 실시간 탐지까지
+
+* **[`yolov5-pothole-detector`](https://github.com/AD-Styles/yolov5-pothole-detector)** — `object-detection-fundamentals` 의 원리 위에 **YOLOv5s 단일 클래스(`nc=1`) 커스텀 학습** 으로 실제 도로 영상에서 포트홀 탐지. **mAP@0.5 0.85+** 의 실무 서비스 수준 파이프라인 완성.
+* **[`multimodal-ai-sensor-fusion`](https://github.com/AD-Styles/multimodal-ai-sensor-fusion)** — RGB + LiDAR 센서 결합. **Early / Late / Intermediate 3가지 융합 아키텍처 비교** + **CLIP 스타일 NT-Xent 대조학습**. 단일 모델 92.7% → **융합 모델 100%** 인식률, 유사도 행렬 95% 감소로 정렬(Alignment) 입증.
+* **[`pytorch-image-classification`](https://github.com/AD-Styles/pytorch-image-classification)** — 텐서 조작 → MLP/CNN/VGG 직접 설계 → ResNet 전이학습까지 이미지 분류 전 과정. OOM 문제 해결로 하드웨어 파이프라인 엔지니어링 역량 확보.
+* **[`resnet-transfer-learning-cifar10`](https://github.com/AD-Styles/resnet-transfer-learning-cifar10)** — ResNet50 vs ResNet101 효율성 비교, **Stage A/B 전이학습 전략 분석**, ImageNet Pretrained Weights의 Skip Connection 효과 실험적 검증.
+
+---
+
+### 4️⃣ Reinforcement Learning — 자율 에이전트 설계
+
+* **[`car-racing-dqn`](https://github.com/AD-Styles/car-racing-dqn)** — `CarRacing-v2` 에서 **96x96 픽셀 → CNN-DQN 직접 학습**. **Frame Stacking (4 frames) · Experience Replay · Target Network** 로 학습 안정화, Hugging Face 배포 완료.
+* **[`rl-optimization-benchmark`](https://github.com/AD-Styles/rl-optimization-benchmark)** — 동일한 Q-Learning 알고리즘으로 **Taxi → CliffWalking → Blackjack 도장깨기**. 500개 상태부터 튜플 상태까지 자료구조 확장으로 범용 설계 능력 입증.
+* **[`rl-q-learning`](https://github.com/AD-Styles/rl-q-learning)** — FrozenLake에서 **희소 보상의 한계를 극복하는 밀집 보상(Dense Reward) 설계** + Epsilon-Greedy + 에이전트-환경 분리 OOP 아키텍처.
+
+---
+
+### 5️⃣ Data Engineering & Domain Application
+
+* **[`rapids-dask-pipeline`](https://github.com/AD-Styles/rapids-dask-pipeline)** — 대규모 데이터 전처리 병목 해소를 위해 **NVIDIA RAPIDS cuDF + Dask** 결합. **CSV → Parquet, CPU → GPU** 로 저장 포맷과 연산 엔진을 함께 최적화, MapReduce DAG 시각화로 Lazy Evaluation 효율성 입증.
+* **[`road-network-graph-analytics`](https://github.com/AD-Styles/road-network-graph-analytics)** — **NVIDIA cuGraph** 로 영국 도로망 (1,225 노드 / 2,622 엣지) 그래프 분석. Dijkstra SSSP + 5종 중심성 (Betweenness · Eigenvector · PageRank · Katz · Degree) 비교로 실무 인사이트 도출.
+* **[`skhynix-stock-analysis`](https://github.com/AD-Styles/skhynix-stock-analysis)** — 반도체 도메인 지식을 결합한 SK하이닉스 주가 예측. **Bidirectional LSTM + 기술적 지표 (MA/RSI/Bollinger/MACD) + Huber Loss**, 데이터 분포 변화에 대한 모델 한계의 객관적 인정.
 
 ---
 
 ## 🔭 Currently Working On (현재 진행 중인 고민과 도전)
-단순한 모델링을 넘어, 데이터 처리 가속화와 LLM 생태계의 효율적 운영을 연구하고 있습니다.
 
-* **NVIDIA LLM Ecosystem 고도화**: **NVIDIA NeMo**를 활용한 모델 미세 조정과 **NVIDIA NIM(Inference Microservices)** 기반의 클라우드 네이티브 추론 환경 구축을 깊이 있게 탐구하며 **NCA-GENL(Generative AI LLMs)** 자격증 취득을 준비 중입니다.
-* **GPU 기반 데이터 파이프라인 가속**: 대규모 데이터 전처리 병목을 해소하기 위해 `Dask` 분산 처리와 `NVIDIA RAPIDS (cuDF)`를 활용한 GPU 메모리 기반 데이터프레임 연산을 최적화하고 있습니다.
-* **AI UX/UI 통합 설계**: 추론 결과를 사용자에게 가장 효율적으로 전달하기 위해 'Modern Wood' 스타일의 웹 챗봇 인터페이스를 기획 및 구현(`HTML/CSS/JS`)하며 풀스택 관점의 시야를 넓히고 있습니다.
+단순한 모델링을 넘어, **데이터 처리 가속화 · LLM 생태계의 효율적 운영 · 풀스택 사용자 경험** 을 동시에 연구하고 있습니다.
+
+* **NVIDIA LLM Ecosystem 고도화** — **NeMo** 기반 모델 미세 조정과 **NIM (Inference Microservices)** 기반 클라우드 네이티브 추론 환경 구축을 탐구하며 **NCA-GENL (Generative AI LLMs)** 자격증 취득 준비 중.
+* **GPU 기반 데이터 파이프라인 가속** — `Dask` 분산 처리 + `RAPIDS cuDF` GPU 메모리 데이터프레임 연산을 결합하여 대규모 ETL의 병목 해소 연구.
+* **Multi-Modal AI 심화** — `clip-from-scratch` 와 `multimodal-ai-sensor-fusion` 의 경험을 바탕으로 **이미지 · 텍스트 · 센서 데이터의 공통 임베딩 공간 정렬** 을 더 깊이 탐구.
+* **AI UX/UI 통합 설계** — 추론 결과를 사용자에게 가장 효율적으로 전달하기 위해 'Modern Wood' 스타일의 웹 챗봇 인터페이스를 기획·구현(`HTML/CSS/JS`)하며 **풀스택 관점의 시야** 확장.
 
 ---
 
 ## 📬 Contact
 - **Email:** `910ehdbs@gmail.com`
 - **LinkedIn:** [linkedin.com/in/AD-Styles](https://linkedin.com)
+- **GitHub:** [github.com/AD-Styles](https://github.com/AD-Styles)
