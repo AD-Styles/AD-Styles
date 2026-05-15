@@ -107,3 +107,4 @@
 - **Email:** `910ehdbs@gmail.com`
 - **LinkedIn:** [linkedin.com/in/AD-Styles](https://linkedin.com)
 - **GitHub:** [github.com/AD-Styles](https://github.com/AD-Styles)
+- **Hugging Face:** [huggingface.co/AD-Styles](https://huggingface.co/AD-Styles)
