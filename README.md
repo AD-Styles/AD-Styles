@@ -11,13 +11,14 @@
 ### 🛠️ Tech Stack & Skills
 
 - **Foundations (논문 직접 구현):** `PyTorch`, `NumPy` only — Transformer, ResNet, GPT, VAE, GAN, Diffusion, CLIP, **Mini-LLaVA (VLM)**
-- **LLM & NLP:** `LangChain`, `LangGraph`, `Gemini 2.0 Flash`, `OpenAI API`, `Hugging Face Transformers`, `KoGPT2`, `KLUE-BERT`, `Sentence-Transformers`
-- **LLM Fine-Tuning & Optimization:** `Unsloth`, `QLoRA (4-bit NF4)`, `PEFT`, `Pydantic-Structured Output`
-- **Computer Vision:** `PyTorch`, `Torchvision`, `YOLOv5`, `U-Net`, `FCN`, `SMP (segmentation_models_pytorch)`, `ResNet`, `GANs`, `OpenCV`
+- **LLM & NLP:** `LangChain`, `LangGraph`, `Gemini 2.0 Flash`, `OpenAI API`, `Qwen2.5`, `EXAONE-3.5`, `Hugging Face Transformers`, `KoGPT2`, `KLUE-BERT`, `Sentence-Transformers`
+- **LLM Fine-Tuning & Optimization:** `Unsloth`, `QLoRA (4-bit NF4)`, `GGUF`, `PEFT`, `Pydantic-Structured Output`
+- **Computer Vision:** `PyTorch`, `Torchvision`, `YOLOv5`, `YOLOv8`, `U-Net`, `FCN`, `SMP (segmentation_models_pytorch)`, `ResNet`, `GANs`, `OpenCV`
 - **RAG & Vector DB:** `ChromaDB`, `FAISS`, `RecursiveCharacterTextSplitter`, `LCEL`, `Multi-Collection Routing`
 - **Reinforcement Learning:** `Q-Learning`, `DQN`, `Experience Replay`, `Frame Stacking`, `Gymnasium`
 - **Data Engineering & Acceleration:** `NVIDIA RAPIDS (cuDF / cuGraph)`, `Dask`, `CUDA (Numba)`, `Parquet`, `NetworkX`
-- **MLOps & Deployment:** `NVIDIA Triton Inference Server`, `TensorRT`, `ONNX`, `Dynamic Batching`, `Hugging Face Spaces`, `Gradio`, `Streamlit`
+- **MLOps & Deployment:** `NVIDIA Triton Inference Server`, `TensorRT`, `ONNX`, `llama.cpp`, `Dynamic Batching`, `Hugging Face Spaces`, `Gradio`, `Streamlit`
+- **Edge AI & Full-Stack:** `NVIDIA Jetson`, `ROS 2`, `FastAPI`, `Flutter`
 
 ---
 
@@ -27,7 +28,8 @@
 
 > **"라이브러리 한 줄로 끝나는 코드는 누구나 작성할 수 있다."** — 그래서 저는 모델의 핵심 메커니즘을 PyTorch / NumPy 만으로 직접 구현하며 "왜 이 구조인가"를 설명할 수 있는 깊이를 쌓았습니다.
 
-* **⭐ [`vlm-from-scratch-v3`](https://github.com/AD-Styles/vlm-from-scratch-v3)** — **v2 의 3가지 한계 (한국어 catastrophic forgetting · OOD 환각 · 1GB adapter) 를 모두 해결한 차세대 반복.** **추론 wrapper 5종 (CLIP yes/no 게이팅 · CLIP 색상 분류 · 출력 후처리 · m2m100 한↔영 번역 · OOD 감지 layer)** 으로 0.5B LLM 한계를 우회. **POPE 50% → 53.33% (untuned) / 70% (tuned), LoRA adapter 1045 MB → 8.28 MB (−99.21%, greedy 출력 bit-단위 동일)**. ViT-L/14 ablation 실패에서 *"vision encoder 크기 ≠ VLM 능력 — LLM 이 진짜 병목"* 정량 입증. HF Spaces Live Demo + gradio_client API + Playwright Chromium 자동화로 **3중 외부 검증**.
+* **⭐ [`vlm-from-scratch-v4`](https://github.com/AD-Styles/vlm-from-scratch-v4)** — **v3 가 정량 입증한 "vision encoder 크기 ≠ VLM 능력, LLM 이 진짜 병목" 결론을 정면 돌파한 4세대 반복.** v3 가 추론 wrapper 5종으로 *우회* 했던 0.5B LLM 한계를, v4 는 언어 모델 자체를 **Qwen2.5-1.5B-Instruct 로 교체 (0.5B → 1.5B, 3배)** 해 정공법으로 해결. **CLIP-ViT-B/32 (frozen) + 학습형 2-layer MLP projector (768→1536, GELU) + 4-bit NF4 QLoRA** 구조를 double quantization 으로 압축(fp32 6 GB → 0.9 GB)해 **단일 8 GB consumer GPU** 에서 2-stage 학습 (projector alignment loss 5.0→1.98 / instruction tuning loss 3.65→1.01). Qwen2.5 내장 `<|image_pad|>` 토큰을 재사용해 신규 토큰 없이 **v3 의 1 GB adapter bloat 를 원천 차단**, custom `_merge` 함수로 임베딩 splice 직접 구현. **VQAv2 36.7% → 56.8%, POPE 50.0% → 71.8% (yes-F1 0.735 · prediction bias 0.568 · refusal rate 0.000)**, first-token entropy 기반 **OOD 탐지 ROC AUC 0.971** 와 OOD abstention layer 로 환각 경고. 검증 게이트를 배포 *이전* 으로 이동, Stage 2 는 VQAv2·LocalizedNarratives·A-OKVQA·KoLLaVA(한국어) 46K 혼합 데이터.
+* **[`vlm-from-scratch-v3`](https://github.com/AD-Styles/vlm-from-scratch-v3)** — **v2 의 3가지 한계 (한국어 catastrophic forgetting · OOD 환각 · 1GB adapter) 를 모두 해결한 차세대 반복.** **추론 wrapper 5종 (CLIP yes/no 게이팅 · CLIP 색상 분류 · 출력 후처리 · m2m100 한↔영 번역 · OOD 감지 layer)** 으로 0.5B LLM 한계를 우회. **POPE 50% → 53.33% (untuned) / 70% (tuned), LoRA adapter 1045 MB → 8.28 MB (−99.21%, greedy 출력 bit-단위 동일)**. ViT-L/14 ablation 실패에서 *"vision encoder 크기 ≠ VLM 능력 — LLM 이 진짜 병목"* 정량 입증. HF Spaces Live Demo + gradio_client API + Playwright Chromium 자동화로 **3중 외부 검증**.
 * **[`vlm-from-scratch (Mini-LLaVA v1→v2)`](https://github.com/AD-Styles/vlm-from-scratch)** — v3 의 출발점이 된 baseline. CLIP-from-scratch + GPT-from-scratch 의 빌딩 블록을 실무 스케일로 조립한 멀티모달 LLM. HuggingFace `LlavaForConditionalGeneration` 미사용, **`<image>` 토큰 splice / projector / LoRA adapter 통합** 직접 구현. **v1 (Stage 1 alignment) 한계 정량 분석 → v2 (Stage 2 LoRA + 균형 instruction 데이터)** 로 개선하는 두 차례 반복 사이클 전체 기록. 영문 강아지 VQA 5문항 4/5 정확, 한국어에서 **catastrophic forgetting 정량 입증**, 피카츄(OOD)에서 **체계적 오류 패턴 분석** 까지 모델 한계의 솔직한 해부.
 * **[`transformer-from-scratch`](https://github.com/AD-Styles/transformer-from-scratch)** — 『Attention Is All You Need』 논문 재현. `nn.Transformer` / HuggingFace 미사용, **Scaled Dot-Product Attention · Multi-Head · Sinusoidal Positional Encoding · Encoder-Decoder** 를 텐서 연산만으로 구현. 토이 태스크에서 **Val Acc 98.4%**, Attention Heatmap의 anti-diagonal 패턴으로 학습 원리 검증.
 * **[`gpt-from-scratch`](https://github.com/AD-Styles/gpt-from-scratch)** — nanoGPT 영감의 **Decoder-only Transformer (10.79M params)**. Q/K/V 분할까지 손작성, 자체 Char-level Tokenizer (vocab 65), Tiny Shakespeare 학습 후 **Greedy / Temperature / Top-k 샘플링 비교**.
@@ -91,13 +93,19 @@
 
 ---
 
+### 6️⃣ Team Project — 팀 협업으로 완성한 온디바이스 멀티모달 AI 시스템
+
+* **[`MIND-CARE-Conversational-ChatBot`](https://github.com/AD-Styles/MIND-CARE-Conversational-ChatBot)** — **독거노인 케어용 온디바이스 HRI 시스템 '마음돌봄'.** 클라우드 의존 없이 **NVIDIA Jetson AGX Xavier 한 대** 에서 음성·언어·비전 추론을 전부 로컬 실행하는 프로덕션급 시스템. **ROS 2 기반 4개 느슨한 결합 서브시스템** (음성대화 STT→LLM→TTS · 비전 · 응급 상태머신 · WebSocket API 게이트웨이) 으로 모듈화. LLM 은 **EXAONE-3.5-7.8B-Instruct 를 GGUF 양자화 (Q3_K_M 속도 / Q4_K_M 품질) + llama.cpp 부분 GPU offload**, 의료 지식은 **ChromaDB + 서울아산병원 질환 백과** 기반 RAG 로 사실 근거 제공. 낙상 감지는 **YOLOv8n-pose (TensorRT FP16)** 골격 추출 후 **frame-level + 시간적 확인 2-stage 검증** 으로 앉기·숙이기 오탐을 억제 — **Recall 0.77 / Precision 0.68 (URFDD)**. '경보 전 질문(query-before-alert)' 로직 · 진단/투약 금지 프롬프트 등 **false negative 방지를 우선한 안전 설계**, GPIO·FCM·SMS 다중 채널 보호자 알림과 Flutter 모바일 앱까지 엔드투엔드 완성.
+
+---
+
 ## 🔭 Currently Working On (현재 진행 중인 고민과 도전)
 
 단순한 모델링을 넘어, **데이터 처리 가속화 · LLM 생태계의 효율적 운영 · 풀스택 사용자 경험** 을 동시에 연구하고 있습니다.
 
 * **NVIDIA LLM Ecosystem 고도화** — **NeMo** 기반 모델 미세 조정과 **NIM (Inference Microservices)** 기반 클라우드 네이티브 추론 환경 구축을 탐구하며 **NCA-GENL (Generative AI LLMs)** 자격증 취득 준비 중.
 * **GPU 기반 데이터 파이프라인 가속** — `Dask` 분산 처리 + `RAPIDS cuDF` GPU 메모리 데이터프레임 연산을 결합하여 대규모 ETL의 병목 해소 연구.
-* **Multi-Modal AI 심화** — `clip-from-scratch` → `multimodal-ai-sensor-fusion` → `vlm-from-scratch (v1→v2)` → **`vlm-from-scratch-v3`** 로 이어지는 **이미지 · 텍스트 · 센서 데이터의 공통 임베딩 공간 정렬** 학습 궤적. v3 에서 **한국어 instruction tuning · OOD detection module · slim adapter (−99.21%)** 모두 달성. 다음 목표 (v4): LLM 크기 업그레이드 (Qwen2.5-1.5B / 3B) + ViT-L/14 재시도 + vLLM/Triton 프로덕션 서빙 통합.
+* **Multi-Modal AI 심화** — `clip-from-scratch` → `multimodal-ai-sensor-fusion` → `vlm-from-scratch (v1→v2)` → `vlm-from-scratch-v3` → **`vlm-from-scratch-v4`** 로 이어지는 **이미지 · 텍스트 · 센서 데이터의 공통 임베딩 공간 정렬** 학습 궤적. v4 에서 **언어 모델 업그레이드 (Qwen2.5-1.5B, 0.5B→1.5B) · VQAv2 56.8% / POPE 71.8% · first-token entropy OOD 탐지 (ROC AUC 0.971)** 를 달성하며 v3 가 입증한 'LLM 병목' 가설을 정공법으로 해소. 다음 목표 (v5): LLM 추가 확장 (Qwen2.5-3B) + ViT-L/14 재시도 + vLLM/Triton 프로덕션 서빙 통합.
 * **AI UX/UI 통합 설계** — 추론 결과를 사용자에게 가장 효율적으로 전달하기 위해 'Modern Wood' 스타일의 웹 챗봇 인터페이스를 기획·구현(`HTML/CSS/JS`)하며 **풀스택 관점의 시야** 확장.
 
 ---
