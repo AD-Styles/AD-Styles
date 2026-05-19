@@ -4,7 +4,7 @@
 
 저는 단순히 만들어진 라이브러리를 사용하는 것을 넘어, **"모델 내부의 핵심 로직과 수학적 원리를 이해해야만 실무의 엣지 케이스(Edge Case)를 해결할 수 있다"** 고 믿습니다. 논문을 직접 구현하며 다진 '기초 체력' 위에, **밑바닥(From Scratch) → 전이학습/파인튜닝 → SOTA 모델 최적화 및 서빙(Triton/TensorRT)** 까지 이어지는 엔드투엔드 AI 파이프라인을 설계하고 있습니다.
 
-> **3대 키워드** — `From Scratch (원리 검증)` · `Production Pipeline (LangChain · Triton · RAPIDS)` · `Multi-Modal (Vision · Language · Sensor)`
+> **3대 키워드** — `From Scratch (원리 검증)` · `Production & Edge (Triton · RAPIDS · Jetson)` · `Multi-Modal (Vision · Language · Voice · Sensor)`
 
 ---
 
@@ -85,7 +85,7 @@
 
 ---
 
-### 5️⃣ Data Engineering & Domain Application
+### 5️⃣ Data Engineering & Domain Application — GPU 가속 데이터 파이프라인 / 도메인 특화 분석
 
 * **[`rapids-dask-pipeline`](https://github.com/AD-Styles/rapids-dask-pipeline)** — 대규모 데이터 전처리 병목 해소를 위해 **NVIDIA RAPIDS cuDF + Dask** 결합. **CSV → Parquet, CPU → GPU** 로 저장 포맷과 연산 엔진을 함께 최적화, MapReduce DAG 시각화로 Lazy Evaluation 효율성 입증.
 * **[`road-network-graph-analytics`](https://github.com/AD-Styles/road-network-graph-analytics)** — **NVIDIA cuGraph** 로 영국 도로망 (1,225 노드 / 2,622 엣지) 그래프 분석. Dijkstra SSSP + 5종 중심성 (Betweenness · Eigenvector · PageRank · Katz · Degree) 비교로 실무 인사이트 도출.
