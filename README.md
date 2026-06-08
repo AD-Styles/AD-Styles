@@ -2,7 +2,7 @@
 
 ![Profile Views](https://komarev.com/ghpvc/?username=AD-Styles&color=blue)
 
-저는 단순히 만들어진 라이브러리를 사용하는 것을 넘어, **"모델 내부의 핵심 로직과 수학적 원리를 이해해야만 실무의 엣지 케이스(Edge Case)를 해결할 수 있다"** 고 믿습니다. 논문을 직접 구현하며 다진 '기초 체력' 위에, **밑바닥(From Scratch) → 전이학습/파인튜닝 → SOTA 모델 최적화 및 서빙(Triton/TensorRT)** 까지 이어지는 엔드투엔드 AI 파이프라인을 설계하고 있습니다..
+저는 단순히 만들어진 라이브러리를 사용하는 것을 넘어, **"모델 내부의 핵심 로직과 수학적 원리를 이해해야만 실무의 엣지 케이스(Edge Case)를 해결할 수 있다"** 고 믿습니다. 논문을 직접 구현하며 다진 '기초 체력' 위에, **밑바닥(From Scratch) → 전이학습/파인튜닝 → SOTA 모델 최적화 및 서빙(Triton/TensorRT)** 까지 이어지는 엔드투엔드 AI 파이프라인을 설계하고 있습니다.
 
 > **핵심 3대 키워드** — From Scratch (원리 검증) · Production & Edge (Triton · RAPIDS · Jetson) · Multi-Modal (Vision · Language · Voice · Sensor)
 
