@@ -1,4 +1,4 @@
-# 안녕하세요. <br/>원리를 파고들어 실전에 적용하는 'AI 테크 인재' 김도윤 입니다! 👋
+# 안녕하세요. <br/>원리를 파고들어 실전에 적용하는 'AI 테크 인재' 김도윤 입니다! 👋....
 
 ![Profile Views](https://komarev.com/ghpvc/?username=AD-Styles&color=blue)
 
