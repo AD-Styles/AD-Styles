@@ -106,7 +106,6 @@
 * **NVIDIA LLM Ecosystem 고도화** — **NeMo** 기반 모델 미세 조정과 **NIM (Inference Microservices)** 기반 클라우드 네이티브 추론 환경 구축을 탐구하며 **NCA-GENL (Generative AI LLMs)** 자격증 취득 준비 중.
 * **GPU 기반 데이터 파이프라인 가속** — `Dask` 분산 처리 + `RAPIDS cuDF` GPU 메모리 데이터프레임 연산을 결합하여 대규모 ETL의 병목 해소 연구.
 * **Multi-Modal AI 심화** — `clip-from-scratch` → `multimodal-ai-sensor-fusion` → `vlm-from-scratch (v1→v2)` → `vlm-from-scratch-v3` → **`vlm-from-scratch-v4`** 로 이어지는 **이미지 · 텍스트 · 센서 데이터의 공통 임베딩 공간 정렬** 학습 궤적. v4 에서 **언어 모델 업그레이드 (Qwen2.5-1.5B, 0.5B→1.5B) · VQAv2 56.8% / POPE 71.8% · first-token entropy OOD 탐지 (ROC AUC 0.971)** 를 달성하며 v3 가 입증한 'LLM 병목' 가설을 정공법으로 해소. 다음 목표 (v5): LLM 추가 확장 (Qwen2.5-3B) + ViT-L/14 재시도 + vLLM/Triton 프로덕션 서빙 통합.
-* **AI UX/UI 통합 설계** — 추론 결과를 사용자에게 가장 효율적으로 전달하기 위해 'Modern Wood' 스타일의 웹 챗봇 인터페이스를 기획·구현(`HTML/CSS/JS`)하며 **풀스택 관점의 시야** 확장.
 
 ---
 
