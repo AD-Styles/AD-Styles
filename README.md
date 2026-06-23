@@ -95,6 +95,8 @@
 
 * **⭐ [`MIND-CARE-Conversational-ChatBot`](https://github.com/AD-Styles/MIND-CARE-Conversational-ChatBot)** — **독거노인 케어용 온디바이스 HRI 시스템 '마음돌봄'.** 클라우드 의존 없이 **NVIDIA Jetson AGX Xavier 한 대** 에서 음성·언어·비전 추론을 전부 로컬 실행하는 프로덕션급 시스템. **ROS 2 기반 4개 느슨한 결합 서브시스템** (음성대화 STT→LLM→TTS · 비전 · 응급 상태머신 · WebSocket API 게이트웨이) 으로 모듈화. LLM 은 **EXAONE-3.5-7.8B-Instruct 를 GGUF 양자화 (Q3_K_M 속도 / Q4_K_M 품질) + llama.cpp 부분 GPU offload**, 의료 지식은 **ChromaDB + 서울아산병원 질환 백과** 기반 RAG 로 사실 근거 제공. 낙상 감지는 **YOLOv8n-pose (TensorRT FP16)** 골격 추출 후 **frame-level + 시간적 확인 2-stage 검증** 으로 앉기·숙이기 오탐을 억제 — **Recall 0.77 / Precision 0.68 (URFDD)**. '경보 전 질문(query-before-alert)' 로직 · 진단/투약 금지 프롬프트 등 **false negative 방지를 우선한 안전 설계**, GPIO·FCM·SMS 다중 채널 보호자 알림과 Flutter 모바일 앱까지 엔드투엔드 완성.
 
+* **⭐ [`Fashion-King-Virtual-Fitting`](https://github.com/AD-Styles/Fashion-King-Virtual-Fitting)**
+
 ---
 
 ## 📬 Contact
